@@ -12,6 +12,7 @@ function App() {
      fetchData();
   },[])
 
+  
   return (
     <div className="App">
       <h1>hii,{user.message}</h1>

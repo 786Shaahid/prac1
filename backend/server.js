@@ -3,17 +3,13 @@ dotenv.config();
 import express from 'express';
 import path from "path";
 import mongoose  from 'mongoose';
+// import cors from 'cors';
+
 const app=express();
 const url=process.env.DB_URL;
 const port=8080;
 // console.log(path.resolve());
-if(process.env.NODE_ENV==='production'){
-    app.use(express.static(path.join(path.resolve(),'frontend','build')))
-    app.get('*',(req,res)=>{
-        return res.sendFile(path.join(path.resolve(),'frontend','build',"index.html"))
-    })
 
-}
 
 
 const connectDB=async()=>{
@@ -30,7 +26,13 @@ const connectDB=async()=>{
          }
 }
 
-
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static(path.join(path.resolve(),'frontend','build')))
+    app.get('*',(req,res)=>{
+        return res.sendFile(path.join(path.resolve(),'frontend','build',"index.html"))
+    })
+}
+// app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
