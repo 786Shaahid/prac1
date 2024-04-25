@@ -5,7 +5,7 @@ function App() {
   const [user,setUser]=useState("");
   useEffect(()=>{
    const  fetchData= async ()=>{
-          const res= await axios.get('/get')  ;
+          const res= await axios.get('/data');
           console.log(res.data);
           setUser(res.data)
      }
